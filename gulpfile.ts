@@ -1,5 +1,6 @@
 import {task} from "gulp";
 
-task("test",() => {
+task("test",(done) => {
     console.log("test");
+    done();
 });
