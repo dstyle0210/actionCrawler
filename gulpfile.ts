@@ -5,7 +5,7 @@ const token = '6168835435:AAEX-jYqum2mD4N2ath6_QihrqjPC5GJ-C4';
 const chatId = 6252259316;
 
 task("test",async (done) => {
-    const browser = await chromium.launch({headless:false});
+    const browser = await chromium.launch({headless:true});
     const page = await browser.newPage();
     await page.goto("https://news.naver.com/");
 
