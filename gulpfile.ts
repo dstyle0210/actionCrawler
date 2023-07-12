@@ -1,5 +1,6 @@
 import {task} from "gulp";
 import {chromium,devices} from "playwright";
+import fs from "fs";
 const TelegramBot = require('node-telegram-bot-api');
 const token = '6168835435:AAEX-jYqum2mD4N2ath6_QihrqjPC5GJ-C4';
 const chatId = 6252259316;
@@ -18,6 +19,7 @@ task("test",async (done) => {
     const bot = new TelegramBot(token, {polling: false});
     bot.sendMessage(chatId, title);
     console.log(title);
+    fs.writeFileSync("list.txt",title,"utf8");
 
     await new Promise((resolve)=>setTimeout(resolve,660000)); // 11분 후 닫음
     await browser.close();
