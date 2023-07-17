@@ -23,7 +23,7 @@ task("test",async (done) => {
 
     await new Promise((resolve)=>setTimeout(resolve,660000)); // 11분 후 닫음
     await browser.close();
-    bot.sendMessage(chatId, "닫습니다.");
+    bot.sendMessage(chatId, "닫습니다.2");
     await bot.close();
     done();
 });
