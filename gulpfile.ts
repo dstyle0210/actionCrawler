@@ -28,3 +28,32 @@ task("test",async (done) => {
     await bot.close();
     done();
 });
+
+// firebase
+import { initializeApp } from 'firebase/app';
+import { getDatabase , set , ref ,onValue } from 'firebase/database';
+task("test2",(done) => {
+    const firebaseConfig = {
+        databaseURL: "https://dstyle-action-crawler-default-rtdb.firebaseio.com",
+    };
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const dbRef = ref(db, 'users/');
+
+    // read
+    onValue(dbRef,(snapshot) => {
+        const data = snapshot.val();
+        console.log(data);
+        done();
+        process.exit(0);
+    })
+    /* create , update
+    set(dbRef, {
+        username: "asd",
+        email: "이메일44",
+        profile_picture : "src"
+      }).then(()=>{
+        done();
+      });
+      */
+})
