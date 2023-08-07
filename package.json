@@ -10,6 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/gulp": "^4.0.13",
+    "@types/jquery": "^3.5.16",
     "firebase": "^10.1.0",
     "gulp": "^4.0.2",
     "gulp-cli": "^2.3.0",
