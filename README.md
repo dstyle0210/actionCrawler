@@ -1,7 +1,8 @@
 # actionCrawler
-크롤링을 통해서 매일 푸쉬받을 정보를 만드는중..   
-(뭘 만들지는 아직 미정..)
-
+github의 action을 이용해서, 런치캘린더 정보 텔레그램으로 받기.
+- 오전 8시
+- 나이키 , 뉴발란스(성인,키즈)
+  
 ```powershell
 > Set-ExecutionPolicy RemoteSigned
 ```
