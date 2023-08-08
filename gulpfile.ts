@@ -44,10 +44,7 @@ task("test",async (done) => {
 */    
     // 뉴발란스(성인) 발매정보
     await page.goto("https://www.nbkorea.com/launchingCalendar/list.action?listStatus=C"); // 뉴발란스(성인)
-    const nbLaunchList = await page.evaluate(() => {
-        const a = document.getElementById("launchingList") as HTMLDivElement;
-        return a.innerHTML;
-    });
+    const nbLaunchList = await page.content();
     bot.sendMessage(chatId, nbLaunchList);
 
     /*
