@@ -43,7 +43,7 @@ task("test",async (done) => {
     };
 */    
     // 뉴발란스(성인) 발매정보
-    await page.goto("https://www.nbkorea.com/launchingCalendar/list.action?listStatus=C"); // 뉴발란스(성인)
+    await page.goto("https://www.nbkorea.com/launchingCalendar/list.action"); // 뉴발란스(성인)
     const nbLaunchList = await page.evaluate(() => {
         return document.body.innerHTML;
     });
