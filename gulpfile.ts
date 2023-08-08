@@ -8,6 +8,7 @@ task("test",async (done) => {
     const browser = await chromium.launch({headless:true});
     const page = await browser.newPage();
     
+    /*
     // 나이키 발매정보
     await page.goto("https://www.nike.com/kr/launch?s=upcoming");
     const nikeLaunchList:{name:string,link:string}[] = await page.evaluate(() => {
@@ -31,17 +32,19 @@ task("test",async (done) => {
         if(!todayLaunchList.length) return [{name:"데이터 미수급 에러",link:""}];
         return todayLaunchList;
     });
+    */
 
     // 텔레그램봇 시작
     const bot = new TelegramBot(token, {polling: false});
-
+/*
     // 텔레그램 발송
     for(let card of nikeLaunchList){
         bot.sendMessage(chatId, "[SNKRS] "+card.name+"\n"+card.link);
     };
-    
+*/    
     // 뉴발란스(성인) 발매정보
     await page.goto("https://www.nbkorea.com/launchingCalendar/list.action?listStatus=C"); // 뉴발란스(성인)
+    await new Promise((resolve)=>setTimeout(resolve,5000));
     const nbLaunchList:{name?:string,link?:string}[] = await page.evaluate(() => {
         const nowDate = new Date();nowDate.setHours(nowDate.getHours() + 9); // github action UTC+0
         const today = (nowDate.getMonth()+1)+"-"+nowDate.getDate();
