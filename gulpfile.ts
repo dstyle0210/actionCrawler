@@ -44,7 +44,13 @@ task("test",async (done) => {
 */    
     // 뉴발란스(성인) 발매정보
     await page.goto("https://www.nbkorea.com/launchingCalendar/list.action?listStatus=C"); // 뉴발란스(성인)
-    await new Promise((resolve)=>setTimeout(resolve,5000));
+    const nbLaunchList = await page.evaluate(() => {
+        const a = document.getElementById("launchingList") as HTMLDivElement;
+        return a.innerHTML;
+    });
+    bot.sendMessage(chatId, nbLaunchList);
+
+    /*
     const nbLaunchList:{name?:string,link?:string}[] = await page.evaluate(() => {
         const nowDate = new Date();nowDate.setHours(nowDate.getHours() + 9); // github action UTC+0
         const today = (nowDate.getMonth()+1)+"-"+nowDate.getDate();
@@ -72,11 +78,13 @@ task("test",async (done) => {
         if(!todayLaunchList.length) return [{name:"데이터 미수급 에러",link:""}];
         return todayLaunchList;
     });
+    
 
     // 텔레그램 발송
     for(let card of nbLaunchList){
         bot.sendMessage(chatId, "[NB] "+card.name+"\n"+card.link);
     };
+    */
 
     await new Promise((resolve)=>setTimeout(resolve,660000)); // 11분 후 닫음 (텔레그램은 연결 후 10분 이내 끊을경우 429에러 발생함 , Error: ETELEGRAM: 429 Too Many Requests: retry after 599)
     // await new Promise((resolve)=>setTimeout(resolve,1000)); // 개발용 1초 있다가 닫음 (그냥 에러 나는걸로..)
