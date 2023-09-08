@@ -12,7 +12,7 @@ task("test",async (done) => {
     await page.goto("https://www.nike.com/kr/launch?s=upcoming");
     const nikeLaunchList:{name:string,link:string}[] = await page.evaluate(() => {
         var prdList = document.querySelectorAll(".product-card");
-        if(!prdList.length) return [{name:"오늘 발매없음",link:""}];
+        if(!prdList.length) return [{name:"발매일정을 못가져왔습니다.",link:""}];
         const todayLaunchList:{name:string,link:string}[] = [];
         prdList.forEach((productCard) => {
             const nowDate = new Date();nowDate.setHours(nowDate.getHours() + 9); // github action UTC+0
@@ -28,7 +28,7 @@ task("test",async (done) => {
                 }
             };
         });
-        if(!todayLaunchList.length) return [{name:"데이터 미수급 에러",link:""}];
+        if(!todayLaunchList.length) return [{name:"오늘 발매없음",link:""}];
         return todayLaunchList;
     });
 
